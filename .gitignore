@@ -1,0 +1,5 @@
+/venv/
+/red_setup_logs/
+/.idea/
+__pycache__
+*.pyc
