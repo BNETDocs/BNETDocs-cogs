@@ -9,7 +9,7 @@ class Ktbpa(commands.Cog):
         super().__init__()
 
     async def on_message(self, message):
-        if message.content[0] != "?":
+        if message.content and message.content[0] != "?":
             return
 
         text = message.content
