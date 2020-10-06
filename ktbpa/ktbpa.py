@@ -1,5 +1,7 @@
 
-from redbot.core import commands
+from datetime import datetime, timedelta
+
+from redbot.core import checks, commands
 
 
 class Ktbpa(commands.Cog):
@@ -30,6 +32,24 @@ class Ktbpa(commands.Cog):
             return await ctx.send("You are nobody special.")
         else:
             return await ctx.send("%s. Role: %s." % (who.display_name, role.name))
+
+    @commands.command()
+    @commands.guild_only()
+    @checks.mod_or_permissions(ban_members=True)
+    @checks.bot_has_permissions(ban_members=True)
+    async def loadban(self, ctx, period: commands.converter.TimedeltaConverter):
+        """Bans everyone who joined the guild in the given time before now."""
+        limiter = timedelta(hours=12)
+        if period > limiter:
+            await ctx.send(f"Error: Loadban can only be used for up to {limiter.seconds / 3600} hours.")
+        else:
+            banned = []
+            async for member in ctx.guild.fetch_members(after=(datetime.now() - period)):
+                if len([role for role in member.roles if role != ctx.guild.default_role]) == 0:
+                    banned.append(str(member.id))
+                    await member.ban(reason="Loadban", delete_message_days=1)
+
+            await ctx.send(f"Banned {len(banned)} users: {', '.join(banned)}")
 
     def cog_unload(self):
         self.bot.remove_listener(self.on_message, 'on_message')
