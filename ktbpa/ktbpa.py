@@ -20,8 +20,8 @@ class Ktbpa(commands.Cog):
 
         text = message.content
         if text.lower() == "?trigger":
-            prefix = (await self.bot.get_prefix(message))[-1]
-            return await message.channel.send("The bot's current trigger is: `%s`" % prefix)
+            prefixes = await self.bot.get_prefix(message)
+            return await message.channel.send("The bot's current trigger is: `%s`" % prefixes[-1])
 
     @commands.command()
     @commands.guild_only()
