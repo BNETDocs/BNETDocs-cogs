@@ -1,0 +1,9 @@
+{
+    "name": "BNETDocs-cogs",
+    "author": [
+        "Davnit (Davnit#1776)"
+    ],
+    "short": "Cogs for BNETDocs",
+    "description": "Cogs specifically tailored for the BNETDocs discord",
+    "install_msg": "idk why you installed this"
+}
