@@ -11,12 +11,12 @@ class Ktbpa(commands.Cog):
         super().__init__()
 
     async def on_message(self, message):
-        if not message.content:
-            return
-
         if message.channel.id == 648966495476383772:
             # auto publish messages in #blue-tracker
             return await message.publish()
+
+        if not message.content:
+            return
 
         text = message.content
         if text.lower() == "?trigger":
