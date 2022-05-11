@@ -23,7 +23,7 @@ class Ktbpa(commands.Cog):
             prefixes = await self.bot.get_prefix(message)
             return await message.channel.send("The bot's current trigger is: `%s`" % prefixes[-1])
 
-    @commands.command()
+    @commands.command(aliases=['ping'])
     @commands.guild_only()
     async def pingme(self, ctx):
         """Replies with 'Pong' to the channel."""
