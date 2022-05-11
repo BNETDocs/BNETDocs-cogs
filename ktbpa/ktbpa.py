@@ -25,6 +25,12 @@ class Ktbpa(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
+    async def pingme(self, ctx):
+        """Replies with 'Pong' to the channel."""
+        return await ctx.send('Pong.')
+
+    @commands.command()
+    @commands.guild_only()
     async def whoami(self, ctx):
         """Gives the requesting user's highest role."""
         who = ctx.message.author
